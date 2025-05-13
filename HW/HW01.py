@@ -8,7 +8,10 @@ FRED_API_KEY = '0a7b2ead6894bc702c9badee383397f7'
 fred = Fred(api_key=FRED_API_KEY)
 
 # 1. Obtain GDP data (U.S. real GDP, quarterly)
-gdp_raw = fred.get_series('GDPC1')
+## USA: GDPC1
+## JAPAN: JPNRGDPEXP
+## INDONESIA: NGDPRSAXDCIDQ
+gdp_raw = fred.get_series('NGDPRSAXDCIDQ')
 gdp_q = gdp_raw.resample('QE').mean()
 gdp_log = np.log(gdp_q)
 
@@ -33,7 +36,6 @@ plt.ylabel('Log GDP')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.show()
 
 # 4. Comparison plots of circulating components
 plt.figure(figsize=(12, 6))
@@ -45,4 +47,5 @@ plt.ylabel('Deviation from Trend')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
+
 plt.show()
